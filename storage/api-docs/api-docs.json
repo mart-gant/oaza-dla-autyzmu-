@@ -1,0 +1,194 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Oaza dla Autyzmu API",
+        "description": "RESTful API dla platformy Oaza dla Autyzmu - społeczność wspierająca osoby z autyzmem i ich rodziny",
+        "contact": {
+            "name": "Oaza dla Autyzmu",
+            "email": "kontakt@oazadlaautyzmu.pl"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api/v1",
+            "description": "API v1"
+        }
+    ],
+    "paths": {
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Register a new user",
+                "description": "Register a new user.",
+                "operationId": "08136088c4862c313b35d6518bab8d3a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Jan Kowalski"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "jan@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password123"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password123"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "enum": [
+                                            "parent",
+                                            "autistic_person",
+                                            "therapist",
+                                            "specialist",
+                                            "educator"
+                                        ],
+                                        "example": "parent"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User registered successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User registered successfully"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "eyJ0eXAiOiJKV1QiLCJhbGc..."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login user and return JWT token",
+                "description": "Login user and return JWT token.",
+                "operationId": "99d66635c4992aeaa6aa44ff653d0563",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "jan@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "eyJ0eXAiOiJKV1QiLCJhbGc..."
+                                        },
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": 3600
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials"
+                    },
+                    "403": {
+                        "description": "Account suspended"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authentication",
+            "description": "Endpoints for user authentication"
+        }
+    ]
+}
