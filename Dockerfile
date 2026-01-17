@@ -44,8 +44,8 @@ RUN cp .env.example .env || echo "APP_KEY=" > .env
 # Install ALL dependencies in one go (let composer handle autoload)
 RUN composer install --no-dev --no-interaction --ignore-platform-req=php
 
-# Install Node dependencies
-RUN npm ci --omit=dev
+# Install Node dependencies (include dev deps for build tools like Vite)
+RUN npm ci
 
 # Verify npm and vite are available
 RUN npm --version && node --version && npx vite --version
