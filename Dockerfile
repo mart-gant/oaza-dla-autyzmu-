@@ -79,7 +79,9 @@ RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available
     && sed -i 's/StartServers\\s*5/StartServers 1/' /etc/apache2/mods-available/mpm_prefork.conf \
     && sed -i 's/MinSpareServers\\s*5/MinSpareServers 1/' /etc/apache2/mods-available/mpm_prefork.conf \
     && sed -i 's/MaxSpareServers\\s*10/MaxSpareServers 2/' /etc/apache2/mods-available/mpm_prefork.conf \
-    && sed -i 's/MaxRequestWorkers\\s*150/MaxRequestWorkers 3/' /etc/apache2/mods-available/mpm_prefork.conf
+    && sed -i 's/MaxRequestWorkers\\s*150/MaxRequestWorkers 3/' /etc/apache2/mods-available/mpm_prefork.conf \
+    && echo "Listen 0.0.0.0:80" > /etc/apache2/ports.conf \
+    && sed -i 's/<VirtualHost \*:80>/<VirtualHost 0.0.0.0:80>/' /etc/apache2/sites-available/000-default.conf
 
 # Create necessary directories and set permissions
 RUN mkdir -p storage/framework/{sessions,views,cache} \
