@@ -21,7 +21,7 @@ services:
       - key: LOG_CHANNEL
         value: stderr
       - key: SESSION_DRIVER
-        value: file
+        value: array
       - key: CACHE_DRIVER
         value: file
       - key: APP_KEY
