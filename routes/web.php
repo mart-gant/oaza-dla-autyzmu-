@@ -19,6 +19,32 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\DB;
 
+// Debug endpoint
+Route::get('/debug', function () {
+    try {
+        $dbCheck = DB::connection()->getPdo() ? 'OK' : 'FAIL';
+        $cacheCheck = cache()->put('test', 'value', 10) ? 'OK' : 'FAIL';
+        $sessionCheck = session()->put('test', 'value') ? 'OK' : 'FAIL';
+        
+        return response()->json([
+            'status' => 'running',
+            'php' => PHP_VERSION,
+            'laravel' => app()->version(),
+            'env' => config('app.env'),
+            'debug' => config('app.debug'),
+            'database' => $dbCheck,
+            'cache' => $cacheCheck,
+            'session' => $sessionCheck,
+            'session_driver' => config('session.driver'),
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'error' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ], 500);
+    }
+});
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
