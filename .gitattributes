@@ -1,5 +1,10 @@
 * text=auto eol=lf
 
+# Force LF for shell scripts and Docker files
+*.sh text eol=lf
+Dockerfile text eol=lf
+docker-entrypoint.sh text eol=lf
+
 *.blade.php diff=html
 *.css diff=css
 *.html diff=html

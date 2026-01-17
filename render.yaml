@@ -1,3 +1,5 @@
+name: oaza-dla-autyzmu-blueprint
+
 services:
   # Web Application
   - type: web
