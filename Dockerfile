@@ -43,8 +43,11 @@ COPY --chown=www-data:www-data . .
 # Finish composer setup
 RUN composer dump-autoload --optimize --no-dev
 
-# Build assets
-RUN npm run build
+# Verify package.json exists and show content
+RUN ls -la && cat package.json
+
+# Build assets with verbose output
+RUN npm run build -- --debug
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
