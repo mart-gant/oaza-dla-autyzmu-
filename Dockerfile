@@ -1,9 +1,9 @@
 # Use PHP 8.3 with Apache (compatible with Symfony 8.0)
 FROM php:8.3-apache
 
-# CACHE BUSTER - Force new build
-ENV BUILD_DATE=2026-01-17-13:15
-RUN echo "Fresh build at $BUILD_DATE"
+# CACHE BUSTER - Force new build with intl extension
+ENV BUILD_DATE=2026-01-17-13:45
+RUN echo "Fresh build with intl at $BUILD_DATE"
 
 # Install system dependencies and Node.js 20.x
 RUN apt-get update && apt-get install -y \
