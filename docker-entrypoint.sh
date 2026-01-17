@@ -19,9 +19,13 @@ echo "==> Database connection established"
 
 # Run migrations
 echo "==> Running database migrations..."
-php artisan migrate --force --no-interaction || {
-    echo "ERROR: Migration failed"
-    exit 1
+php artisan migrate --force --no-interaction 2>&1 | tee /tmp/migration.log || {
+    echo "ERROR: Migration failed, trying fresh migration..."
+    php artisan migrate:fresh --force --no-interaction || {
+        echo "ERROR: Fresh migration also failed"
+        cat /tmp/migration.log
+        exit 1
+    }
 }
 
 # Cache configuration
