@@ -5,12 +5,14 @@ echo "==> Starting Laravel application setup..."
 
 # Wait for database to be ready
 echo "==> Waiting for database connection..."
-until php artisan db:show 2>/dev/null || [ $((++attempts)) -ge 30 ]; do
+attempts=0
+until php artisan db:show 2>/dev/null || [ "$attempts" -ge 30 ]; do
     echo "Database not ready, waiting... (attempt $attempts/30)"
+    attempts=$((attempts + 1))
     sleep 2
 done
 
-if [ $attempts -ge 30 ]; then
+if [ "$attempts" -ge 30 ]; then
     echo "ERROR: Could not connect to database after 60 seconds"
     exit 1
 fi
@@ -28,11 +30,12 @@ php artisan migrate --force --no-interaction 2>&1 | tee /tmp/migration.log || {
     }
 }
 
-# Cache configuration
+# Cache configuration (skip route cache to avoid conflicts)
 echo "==> Caching configuration..."
 php artisan config:cache
-php artisan route:cache
 php artisan view:cache
+# Skip route:cache temporarily to debug route conflicts
+# php artisan route:cache
 
 # Create storage link if it doesn't exist
 if [ ! -L public/storage ]; then
