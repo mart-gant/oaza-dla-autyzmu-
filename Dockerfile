@@ -31,29 +31,23 @@ WORKDIR /var/www/html
 # Copy composer files first for better caching
 COPY composer.json composer.lock ./
 
-# Install PHP dependencies (ignore platform requirements for PHP version)
-RUN composer install --no-dev --no-scripts --no-autoloader --no-interaction --ignore-platform-req=php
-
 # Copy package files
 COPY package*.json ./
 
-# Install Node dependencies
-RUN npm ci --omit=dev
-
-# Copy application code
+# Copy application code early (composer needs it)
 COPY --chown=www-data:www-data . .
 
 # Create .env from example (Laravel needs this for bootstrap)
 RUN cp .env.example .env || echo "APP_KEY=" > .env
 
-# Finish composer setup (remove problematic --optimize flag)
-RUN composer dump-autoload
+# Install ALL dependencies in one go (let composer handle autoload)
+RUN composer install --no-dev --no-interaction --ignore-platform-req=php
 
-# Verify package.json exists and show content
-RUN ls -la && cat package.json
+# Install Node dependencies
+RUN npm ci --omit=dev
 
-# Build assets with verbose output
-RUN npm run build -- --debug
+# Build assets
+RUN npm run build
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
