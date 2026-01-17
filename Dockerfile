@@ -40,8 +40,15 @@ RUN npm ci --omit=dev
 # Copy application code
 COPY --chown=www-data:www-data . .
 
-# Finish composer setup
-RUN composer dump-autoload --optimize --no-dev
+# Check what was copied
+RUN echo "=== Checking copied files ===" && \
+    ls -la app/ && \
+    ls -la bootstrap/
+
+# Finish composer setup with verbose output
+RUN composer dump-autoload --optimize --no-dev -vvv || \
+    (echo "=== Composer dump-autoload failed, trying without optimize ===" && \
+     composer dump-autoload --no-dev)
 
 # Verify package.json exists and show content
 RUN ls -la && cat package.json
