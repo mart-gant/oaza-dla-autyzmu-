@@ -23,10 +23,14 @@ echo "==> Database connection established"
 echo "==> Running database migrations..."
 php artisan migrate --force --no-interaction || echo "Migration failed, continuing..."
 
-# Clear all caches
+# Clear ALL caches and sessions
+php artisan cache:clear
 php artisan config:clear
 php artisan route:clear
 php artisan view:clear
+
+# Remove any stale sessions
+rm -rf storage/framework/sessions/*
 
 # Create storage link if it doesn't exist
 if [ ! -L public/storage ]; then
