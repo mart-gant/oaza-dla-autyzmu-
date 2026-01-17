@@ -40,9 +40,11 @@ RUN npm ci --omit=dev
 # Copy application code
 COPY --chown=www-data:www-data . .
 
-# Finish composer setup and build assets
-RUN composer dump-autoload --optimize --no-dev \
-    && npm run build
+# Finish composer setup
+RUN composer dump-autoload --optimize --no-dev
+
+# Build assets
+RUN npm run build
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
