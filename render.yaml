@@ -18,6 +18,12 @@ services:
         value: true
       - key: RENDER
         value: true
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: SESSION_DRIVER
+        value: file
+      - key: CACHE_DRIVER
+        value: file
       - key: APP_KEY
         generateValue: true
       - key: APP_URL

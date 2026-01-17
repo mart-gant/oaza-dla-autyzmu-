@@ -21,19 +21,12 @@ echo "==> Database connection established"
 
 # Run migrations
 echo "==> Running database migrations..."
-php artisan migrate --force --no-interaction 2>&1 | tee /tmp/migration.log || {
-    echo "ERROR: Migration failed, trying fresh migration..."
-    php artisan migrate:fresh --force --no-interaction || {
-        echo "ERROR: Fresh migration also failed"
-        cat /tmp/migration.log
-        exit 1
-    }
-}
+php artisan migrate --force --no-interaction || echo "Migration failed, continuing..."
 
-# Skip all caching to reduce memory usage on Render free tier
-# echo "==> Caching configuration..."
-# php artisan config:cache
-# php artisan view:cache
+# Clear all caches
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
 
 # Create storage link if it doesn't exist
 if [ ! -L public/storage ]; then
@@ -42,7 +35,7 @@ if [ ! -L public/storage ]; then
 fi
 
 echo "==> Laravel setup complete!"
-echo "==> Starting application..."
+echo "==> Starting PHP server on 0.0.0.0:\${PORT:-10000}..."
 
 # Execute the main container command
 exec "$@"
