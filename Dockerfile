@@ -1,5 +1,5 @@
-# Use PHP 8.2 with Apache
-FROM php:8.2-apache
+# Use PHP 8.3 with Apache (compatible with Symfony 8.0)
+FROM php:8.3-apache
 
 # Install system dependencies and Node.js 20.x
 RUN apt-get update && apt-get install -y \
