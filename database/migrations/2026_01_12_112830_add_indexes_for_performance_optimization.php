@@ -39,7 +39,7 @@ return new class extends Migration
 
         // Indexy dla messages - konwersacje
         Schema::table('messages', function (Blueprint $table) {
-            $table->index('is_read');
+            $table->index('read_at');
             $table->index(['sender_id', 'receiver_id', 'created_at']);
         });
     }
@@ -72,7 +72,7 @@ return new class extends Migration
         });
 
         Schema::table('messages', function (Blueprint $table) {
-            $table->dropIndex(['is_read']);
+            $table->dropIndex(['read_at']);
             $table->dropIndex(['sender_id', 'receiver_id', 'created_at']);
         });
     }
