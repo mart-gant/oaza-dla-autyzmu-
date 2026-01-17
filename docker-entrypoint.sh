@@ -19,6 +19,12 @@ fi
 
 echo "==> Database connection established"
 
+# Generate APP_KEY if not set
+if [ -z "$APP_KEY" ] || [ "$APP_KEY" = "" ]; then
+    echo "==> Generating APP_KEY..."
+    php artisan key:generate --force
+fi
+
 # Run migrations
 echo "==> Running database migrations..."
 php artisan migrate --force --no-interaction || echo "Migration failed, continuing..."

@@ -24,8 +24,6 @@ services:
         value: array
       - key: CACHE_DRIVER
         value: file
-      - key: APP_KEY
-        value: base64:uZMphvuYISM+K/7o2nQXlLfK0DRumzBkuu3fGfK6RpE=
       - key: APP_URL
         value: https://oaza-dla-autyzmu.onrender.com
       - key: DB_CONNECTION
