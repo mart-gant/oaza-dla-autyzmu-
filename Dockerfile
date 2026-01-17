@@ -2,8 +2,8 @@
 FROM php:8.3-apache
 
 # CACHE BUSTER - Force new build with intl extension
-ENV BUILD_DATE=2026-01-17-14:30
-RUN echo "Fresh build with intl at $BUILD_DATE"
+ENV BUILD_DATE=2026-01-17-14:35
+RUN echo "Fresh build with health check fix at $BUILD_DATE"
 
 # Install system dependencies and Node.js 20.x
 RUN apt-get update && apt-get install -y \
