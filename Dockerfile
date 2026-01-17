@@ -47,6 +47,9 @@ RUN composer install --no-dev --no-interaction --ignore-platform-req=php
 # Install Node dependencies
 RUN npm ci --omit=dev
 
+# Verify npm and vite are available
+RUN npm --version && node --version && npx vite --version
+
 # Build assets
 RUN npm run build
 
