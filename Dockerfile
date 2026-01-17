@@ -47,11 +47,19 @@ RUN composer install --no-dev --no-interaction --ignore-platform-req=php
 # Install Node dependencies (include dev deps for build tools like Vite)
 RUN npm ci
 
+# Debug: Check what was installed
+RUN echo "=== NPM packages ===" && \
+    ls -la node_modules/.bin/ && \
+    echo "=== Checking vite ===" && \
+    ls -la node_modules/.bin/vite || echo "Vite not found in bin" && \
+    echo "=== Package.json scripts ===" && \
+    cat package.json
+
 # Verify npm and vite are available
 RUN npm --version && node --version && npx vite --version
 
-# Build assets
-RUN npm run build
+# Build assets using npx to ensure vite is found
+RUN npx vite build
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
