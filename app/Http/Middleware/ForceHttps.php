@@ -15,6 +15,11 @@ class ForceHttps
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Skip HTTPS redirect on Render.com (they handle SSL termination)
+        if (env('RENDER') === 'true') {
+            return $next($request);
+        }
+
         // Skip health check endpoint
         if ($request->is('up')) {
             return $next($request);
