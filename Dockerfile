@@ -69,13 +69,17 @@ RUN npx vite build
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
-# Configure Apache DocumentRoot
+# Configure Apache with memory optimization for Render free tier (512MB limit)
 RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf \
     && echo '<Directory /var/www/html/public>\n\
     Options -Indexes +FollowSymLinks\n\
     AllowOverride All\n\
     Require all granted\n\
-</Directory>' >> /etc/apache2/apache2.conf
+</Directory>' >> /etc/apache2/apache2.conf \
+    && sed -i 's/StartServers\\s*5/StartServers 1/' /etc/apache2/mods-available/mpm_prefork.conf \
+    && sed -i 's/MinSpareServers\\s*5/MinSpareServers 1/' /etc/apache2/mods-available/mpm_prefork.conf \
+    && sed -i 's/MaxSpareServers\\s*10/MaxSpareServers 2/' /etc/apache2/mods-available/mpm_prefork.conf \
+    && sed -i 's/MaxRequestWorkers\\s*150/MaxRequestWorkers 3/' /etc/apache2/mods-available/mpm_prefork.conf
 
 # Create necessary directories and set permissions
 RUN mkdir -p storage/framework/{sessions,views,cache} \

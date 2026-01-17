@@ -30,12 +30,10 @@ php artisan migrate --force --no-interaction 2>&1 | tee /tmp/migration.log || {
     }
 }
 
-# Cache configuration (skip route cache to avoid conflicts)
-echo "==> Caching configuration..."
-php artisan config:cache
-php artisan view:cache
-# Skip route:cache temporarily to debug route conflicts
-# php artisan route:cache
+# Skip all caching to reduce memory usage on Render free tier
+# echo "==> Caching configuration..."
+# php artisan config:cache
+# php artisan view:cache
 
 # Create storage link if it doesn't exist
 if [ ! -L public/storage ]; then
