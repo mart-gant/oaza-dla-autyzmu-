@@ -60,6 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
      * @var array<string, string>
      */
     protected $casts = [
+        'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'is_specialist' => 'boolean',
         'is_suspended' => 'boolean',
@@ -72,6 +73,46 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     public function facilities(): HasMany
     {
         return $this->hasMany(Facility::class);
+    }
+
+    /**
+     * Relacja użytkownika z opiniami.
+     */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    /**
+     * Relacja użytkownika z tematami forum.
+     */
+    public function forumTopics(): HasMany
+    {
+        return $this->hasMany(ForumTopic::class);
+    }
+
+    /**
+     * Relacja użytkownika z postami na forum.
+     */
+    public function forumPosts(): HasMany
+    {
+        return $this->hasMany(ForumPost::class);
+    }
+
+    /**
+     * Wiadomości wysłane przez użytkownika.
+     */
+    public function sentMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    /**
+     * Wiadomości otrzymane przez użytkownika.
+     */
+    public function receivedMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
     }
 
     /**

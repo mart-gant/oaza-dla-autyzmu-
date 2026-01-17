@@ -66,6 +66,11 @@ Route::get('/dashboard', function () {
 // Autoryzacja
 require __DIR__.'/auth.php';
 
+// Export danych użytkownika (RODO)
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/export/my-data', [\App\Http\Controllers\DataExportController::class, 'exportUserData'])->name('export.user-data');
+});
+
 // Panel użytkownika (po zalogowaniu)
 Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
 
@@ -129,6 +134,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 Route::get('/facilities', [FacilityController::class, 'index'])->name('facilities.index');
 Route::get('/facilities/{facility}', [FacilityController::class, 'show'])->name('facilities.show');
+
+//  **Wydarzenia (Kalendarz)**
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('events', \App\Http\Controllers\EventController::class)->except(['index', 'show']);
+});
+Route::get('/events', [\App\Http\Controllers\EventController::class, 'index'])->name('events.index');
+Route::get('/events/{event}', [\App\Http\Controllers\EventController::class, 'show'])->name('events.show');
 
 //  **Artykuły (Poradnik wiedzy)**
 Route::middleware(['auth', 'verified'])->group(function () {

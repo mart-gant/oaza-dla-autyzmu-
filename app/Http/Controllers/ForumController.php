@@ -45,16 +45,16 @@ class ForumController extends Controller
     public function storePost(Request $request)
     {
         $validated = $request->validate([
-            'content' => 'required|string',
-            'topic_id' => 'required|exists:forum_topics,id',
+            'body' => 'required|string',
+            'forum_topic_id' => 'required|exists:forum_topics,id',
         ]);
 
         ForumPost::create([
-            'content' => strip_tags($validated['content']),
+            'body' => strip_tags($validated['body']),
             'user_id' => auth()->id(),
-            'topic_id' => $validated['topic_id'],
+            'forum_topic_id' => $validated['forum_topic_id'],
         ]);
 
-        return redirect()->route('forum.topic', $validated['topic_id'])->with('success', 'Odpowiedź dodana.');
+        return redirect()->route('forum.topic', $validated['forum_topic_id'])->with('success', 'Odpowiedź dodana.');
     }
 }

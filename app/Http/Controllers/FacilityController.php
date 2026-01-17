@@ -13,9 +13,21 @@ class FacilityController extends Controller
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $facilities = Facility::paginate(15);
+        $query = Facility::with(['user', 'reviews']); // Eager loading
+        
+        // Filter by city
+        if ($request->filled('city')) {
+            $query->where('city', $request->city);
+        }
+        
+        // Search by name
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+        
+        $facilities = $query->paginate(15);
         return view('facilities.index', compact('facilities'));
     }
     
@@ -88,7 +100,11 @@ class FacilityController extends Controller
      */
     public function update(Request $request, Facility $facility)
     {
-        // Każdy zalogowany użytkownik może aktualizować placówki (platforma społecznościowa)
+        // Tylko właściciel lub admin może edytować placówkę
+        if ($facility->user_id !== auth()->id() && auth()->user()->role !== 'admin') {
+            abort(403);
+        }
+
         $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',

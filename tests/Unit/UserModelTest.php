@@ -11,15 +11,15 @@ uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 test('user has correct default role', function () {
     $user = User::factory()->create();
     
-    expect($user->role)->toBe('user');
+    expect($user->role)->toBe('parent');
 });
 
 test('user can check if they are admin', function () {
     $admin = User::factory()->create(['role' => 'admin']);
-    $user = User::factory()->create(['role' => 'user']);
+    $user = User::factory()->create(['role' => 'parent']);
     
     expect($admin->role)->toBe('admin');
-    expect($user->role)->toBe('user');
+    expect($user->role)->toBe('parent');
 });
 
 test('user can have facilities', function () {
@@ -110,14 +110,14 @@ test('user fillable attributes can be mass assigned', function () {
         'name' => 'Test User',
         'email' => 'test@example.com',
         'password' => 'password',
-        'role' => 'specialist',
+        'role' => 'therapist',
     ];
     
     $user = User::create($data);
     
     expect($user->name)->toBe('Test User');
     expect($user->email)->toBe('test@example.com');
-    expect($user->role)->toBe('specialist');
+    expect($user->role)->toBe('therapist');
 });
 
 test('user hidden attributes are not in array', function () {

@@ -7,8 +7,10 @@ test('user can register', function () {
     $response = $this->post(route('register'), [
         'name' => 'John Doe',
         'email' => 'john@example.com',
-        'password' => 'password123',
-        'password_confirmation' => 'password123',
+        'password' => 'Password123!',
+        'password_confirmation' => 'Password123!',
+        'role' => 'parent',
+        'terms' => true,
     ]);
     
     $response->assertRedirect();

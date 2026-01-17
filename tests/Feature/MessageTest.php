@@ -147,7 +147,11 @@ test('user can search for other users', function () {
     $searchableUser = User::factory()->create(['name' => 'Jane Smith']);
     $inactiveUser = User::factory()->create(['name' => 'Jane Inactive']);
     
-    $response = $this->actingAs($currentUser)->getJson('/api/users/search?q=Jane');
+    $token = auth('api')->login($currentUser);
+    
+    $response = $this->withHeaders([
+        'Authorization' => 'Bearer ' . $token,
+    ])->getJson('/api/v1/users/search?q=Jane');
     
     $response->assertStatus(200);
     $response->assertJsonFragment(['name' => 'Jane Smith']);

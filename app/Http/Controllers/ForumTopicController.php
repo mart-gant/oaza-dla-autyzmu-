@@ -10,7 +10,7 @@ class ForumTopicController extends Controller
 {
     public function categories()
     {
-        $categories = ForumCategory::all();
+        $categories = ForumCategory::withCount('topics')->get(); // Eager load count
         return view('forum.categories', compact('categories'));
     }
 
@@ -20,17 +20,22 @@ class ForumTopicController extends Controller
             'search' => 'nullable|string|max:255'
         ])['search'] ?? null;
         
-        $topics = $category->topics()->when($search, function ($query, $search) {
-            return $query->where('title', 'like', "%$search%");
-        })
-        ->paginate(10);
+        $topics = $category->topics()
+            ->with(['user']) // Eager loading - usunięto 'latestPost' bo nie istnieje
+            ->withCount('posts') // Count posts
+            ->when($search, function ($query, $search) {
+                return $query->where('title', 'like', "%$search%");
+            })
+            ->paginate(10);
 
         return view('forum.index', compact('topics', 'category', 'search'));
     }
 
     public function show(ForumTopic $topic)
     {
-        $posts = $topic->posts()->paginate(10);
+        $posts = $topic->posts()
+            ->with('user') // Eager load users for posts
+            ->paginate(10);
         return view('forum.show', compact('topic', 'posts'));
     }
 

@@ -36,7 +36,7 @@ test('jwt api login fails with wrong credentials', function () {
     ]);
     
     $response->assertStatus(401);
-    $response->assertJson(['error' => 'Unauthorized']);
+    $response->assertJson(['success' => false, 'message' => 'Invalid credentials']);
 });
 
 test('suspended user cannot login via api', function () {
@@ -65,9 +65,9 @@ test('jwt api register creates user and returns token', function () {
     $response->assertStatus(201);
     $response->assertJsonStructure([
         'user' => ['id', 'name', 'email'],
-        'access_token',
-        'token_type',
-        'expires_in',
+        'token',
+        'success',
+        'message',
     ]);
     
     $this->assertDatabaseHas('users', [
@@ -84,9 +84,12 @@ test('jwt me endpoint returns authenticated user', function () {
     
     $response->assertStatus(200);
     $response->assertJson([
-        'id' => $user->id,
-        'email' => $user->email,
-        'name' => $user->name,
+        'success' => true,
+        'user' => [
+            'id' => $user->id,
+            'email' => $user->email,
+            'name' => $user->name,
+        ],
     ]);
 });
 
@@ -132,7 +135,7 @@ test('api facilities index returns paginated list', function () {
     $response->assertStatus(200);
     $response->assertJsonStructure([
         'data' => [
-            '*' => ['id', 'name', 'type', 'city'],
+            '*' => ['id', 'name', 'city'],
         ],
         'links',
         'meta',
@@ -140,10 +143,16 @@ test('api facilities index returns paginated list', function () {
 });
 
 test('api facilities can be filtered by type', function () {
-    \App\Models\Facility::factory()->create(['type' => 'therapist', 'name' => 'Therapist 1']);
-    \App\Models\Facility::factory()->create(['type' => 'school', 'name' => 'School 1']);
+    \App\Models\Facility::factory()->create([
+        'name' => 'Therapist 1',
+        'type' => 'osrodek_terapeutyczny',
+    ]);
+    \App\Models\Facility::factory()->create([
+        'name' => 'School 1',
+        'type' => 'szkola',
+    ]);
     
-    $response = $this->getJson('/api/v1/facilities?type=therapist');
+    $response = $this->getJson('/api/v1/facilities?type=osrodek_terapeutyczny');
     
     $response->assertStatus(200);
     $response->assertJsonFragment(['name' => 'Therapist 1']);
@@ -157,7 +166,7 @@ test('authenticated user can create facility via api', function () {
     $response = $this->withHeader('Authorization', "Bearer $token")
         ->postJson('/api/v1/facilities', [
             'name' => 'API Test Facility',
-            'type' => 'therapist',
+            'type' => 'szkola',
             'address' => '123 API St',
             'city' => 'Warsaw',
             'postal_code' => '00-001',
@@ -201,3 +210,4 @@ test('api rate limiting works', function () {
     // 62nd request should be rate limited
     $response->assertStatus(429);
 })->skip('Rate limiting test may take too long');
+

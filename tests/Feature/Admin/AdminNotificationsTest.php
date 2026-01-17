@@ -10,6 +10,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
+/**
+ * @group admin
+ */
 class AdminNotificationsTest extends TestCase
 {
     use RefreshDatabase;

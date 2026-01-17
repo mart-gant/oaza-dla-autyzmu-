@@ -1,8 +1,8 @@
-# 🌟 Oaza dla Autyzmu
+#  Oaza dla Autyzmu
 
 Platforma społecznościowa dedykowana osobom z autyzmem, ich rodzinom oraz specjalistom. Projekt umożliwia wymianę doświadczeń, dostęp do informacji o placówkach i specjalistach oraz edukację poprzez artykuły.
 
-## 📋 Spis treści
+## Spis treści
 
 - [O projekcie](#o-projekcie)
 - [Funkcjonalności](#funkcjonalności)
@@ -14,44 +14,44 @@ Platforma społecznościowa dedykowana osobom z autyzmem, ich rodzinom oraz spec
 - [Konta testowe](#konta-testowe)
 - [Licencja](#licencja)
 
-## 🎯 O projekcie
+## O projekcie
 
 **Oaza dla Autyzmu** to kompleksowa platforma webowa stworzona z myślą o społeczności związanej z autyzmem. Aplikacja oferuje:
 
-- 💬 **Forum dyskusyjne** - bezpieczne miejsce wymiany doświadczeń i wsparcia
-- 🏥 **Bazę placówek** - katalog ośrodków terapeutycznych i edukacyjnych
-- 👨‍⚕️ **Bazę specjalistów** - dostęp do profesjonalistów wspierających osoby z autyzmem
-- 📚 **Poradnik wiedzy** - artykuły edukacyjne i praktyczne porady
-- ⭐ **System recenzji** - oceny i opinie o placówkach
-- 👤 **Profile użytkowników** - personalizacja doświadczeń
+-  **Forum dyskusyjne** - bezpieczne miejsce wymiany doświadczeń i wsparcia
+- **Bazę placówek** - katalog ośrodków terapeutycznych i edukacyjnych
+-  **Bazę specjalistów** - dostęp do profesjonalistów wspierających osoby z autyzmem
+-  **Poradnik wiedzy** - artykuły edukacyjne i praktyczne porady
+-  **System recenzji** - oceny i opinie o placówkach
+-  **Profile użytkowników** - personalizacja doświadczeń
 
-## ✨ Funkcjonalności
+##  Funkcjonalności
 
 ### Dla użytkowników:
-- ✅ Rejestracja i autoryzacja (Laravel Breeze)
-- ✅ Zarządzanie profilem użytkownika
-- ✅ Przeglądanie i wyszukiwanie placówek
-- ✅ Przeglądanie i wyszukiwanie specjalistów
-- ✅ Tworzenie i edycja artykułów
-- ✅ Udział w dyskusjach na forum
-- ✅ Dodawanie recenzji placówek
-- ✅ System reakcji (like/dislike)
-- ✅ Śledzenie wizyt w placówkach
-- ✅ Formularz kontaktowy
+- Rejestracja i autoryzacja (Laravel Breeze)
+- Zarządzanie profilem użytkownika
+- Przeglądanie i wyszukiwanie placówek
+- Przeglądanie i wyszukiwanie specjalistów
+- Tworzenie i edycja artykułów
+-  Udział w dyskusjach na forum
+-  Dodawanie recenzji placówek
+-  System reakcji (like/dislike)
+- Śledzenie wizyt w placówkach
+- Formularz kontaktowy
 
 ### Dla administratorów:
-- ✅ Panel administracyjny
-- ✅ Zarządzanie użytkownikami (role, zawieszenia, personifikacja)
-- ✅ Zarządzanie placówkami
-- ✅ Logi audytowe działań w systemie
-- ✅ Export danych
+- Panel administracyjny
+- Zarządzanie użytkownikami (role, zawieszenia, personifikacja)
+-  Zarządzanie placówkami
+-  Logi audytowe działań w systemie
+-  Export danych
 
 ### Dla specjalistów:
-- ✅ Dedykowane profile specjalistów
-- ✅ Możliwość prezentacji specjalizacji
-- ✅ Kontakt z rodzinami
+- Dedykowane profile specjalistów
+- Możliwość prezentacji specjalizacji
+-  Kontakt z rodzinami
 
-## 🚀 Instalacja
+##  Instalacja
 
 ### Wymagania systemowe:
 - **PHP** 8.2 lub nowszy
@@ -121,7 +121,7 @@ npm run build
 npm run dev
 ```
 
-## 🔧 Konfiguracja
+##  Konfiguracja
 
 ### Konfiguracja email (opcjonalnie)
 
@@ -168,7 +168,7 @@ Jeśli używasz Laravel Herd, aplikacja automatycznie będzie dostępna pod:
 
 Sprawdź status aplikacji: **http://localhost:8000/health**
 
-## 📁 Struktura projektu
+##  Struktura projektu
 
 ```
 oaza-dla-autyzmu/
@@ -201,7 +201,7 @@ oaza-dla-autyzmu/
 └── tests/                     # Testy automatyczne
 ```
 
-## 🛠️ Technologie
+## Technologie
 
 ### Backend:
 - **Laravel 11** - Framework PHP
@@ -232,7 +232,7 @@ Po uruchomieniu seedera (`php artisan db:seed`) dostępne są przykładowe konta
 - Email: `admin@example.com`
 - Hasło: `password`
 
-## 📚 Główne endpointy
+## Główne endpointy
 
 ### Publiczne:
 - `/` - Strona główna
@@ -249,7 +249,7 @@ Po uruchomieniu seedera (`php artisan db:seed`) dostępne są przykładowe konta
 - `/my-visits` - Historia wizyt
 - `/admin` - Panel administratora (tylko admin)
 
-## 🔐 Role użytkowników
+## Role użytkowników
 
 System wspiera następujące role:
 
@@ -258,7 +258,7 @@ System wspiera następujące role:
 - **moderator** - Moderator forum i treści
 - **admin** - Administrator (pełny dostęp)
 
-## 🧪 Testowanie
+## Testowanie
 
 ```bash
 # Uruchom testy PHPUnit
@@ -271,7 +271,7 @@ php artisan test
 php artisan test --coverage
 ```
 
-## 📝 Kolejne kroki rozwoju
+##  Kolejne kroki rozwoju
 
 Planowane funkcjonalności:
 
@@ -285,7 +285,7 @@ Planowane funkcjonalności:
 - [ ] Galerie zdjęć dla placówek
 - [ ] System raportowania nieprawidłowości
 
-## 🤝 Współpraca
+## Współpraca
 
 Projekt jest otwarty na współpracę! Jeśli chcesz pomóc w rozwoju:
 
@@ -295,14 +295,14 @@ Projekt jest otwarty na współpracę! Jeśli chcesz pomóc w rozwoju:
 4. Push do brancha (`git push origin feature/AmazingFeature`)
 5. Otwórz Pull Request
 
-## 📄 Licencja
+## Licencja
 
 Projekt wykorzystuje framework Laravel, który jest dostępny na licencji [MIT](https://opensource.org/licenses/MIT).
 
-## 📞 Kontakt
+##  Kontakt
 
 W razie pytań lub problemów, skorzystaj z formularza kontaktowego w aplikacji lub otwórz Issue na GitHubie.
 
 ---
 
-**Zbudowano z ❤️ dla społeczności osób z autyzmem**
+**Zbudowano z dla społeczności osób z autyzmem**

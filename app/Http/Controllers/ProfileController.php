@@ -52,7 +52,7 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return Redirect::route('profile.show');
+        return Redirect::route('profile.edit');
     }
 
     /**
@@ -100,9 +100,13 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current-password'],
-        ]);
+        try {
+            $request->validateWithBag('userDeletion', [
+                'password' => ['required', 'current-password'],
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return Redirect::route('profile.edit')->withErrors($e->errors(), 'userDeletion');
+        }
 
         $user = $request->user();
 

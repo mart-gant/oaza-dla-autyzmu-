@@ -6,6 +6,9 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @group admin
+ */
 class AdminApiSuspendTokenTest extends TestCase
 {
     use RefreshDatabase;

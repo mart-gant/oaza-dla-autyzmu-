@@ -19,12 +19,9 @@ class ForumTopicFactory extends Factory
     public function definition(): array
     {
         return [
-            'category_id' => ForumCategory::factory(),
+            'forum_category_id' => ForumCategory::factory(),
             'user_id' => User::factory(),
             'title' => fake()->sentence(),
-            'is_pinned' => fake()->boolean(10),
-            'is_locked' => false,
-            'views' => fake()->numberBetween(0, 1000),
         ];
     }
 }

@@ -19,9 +19,9 @@ class ForumPostFactory extends Factory
     public function definition(): array
     {
         return [
-            'topic_id' => ForumTopic::factory(),
+            'forum_topic_id' => ForumTopic::factory(),
             'user_id' => User::factory(),
-            'content' => fake()->paragraphs(3, true),
+            'body' => fake()->paragraphs(3, true),
         ];
     }
 }

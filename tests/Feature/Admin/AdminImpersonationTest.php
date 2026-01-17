@@ -6,6 +6,9 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @group admin
+ */
 class AdminImpersonationTest extends TestCase
 {
     use RefreshDatabase;

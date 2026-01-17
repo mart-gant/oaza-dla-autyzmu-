@@ -18,9 +18,7 @@ class ForumCategoryFactory extends Factory
     {
         return [
             'name' => fake()->words(3, true),
-            'slug' => fake()->unique()->slug(),
             'description' => fake()->sentence(),
-            'icon' => fake()->randomElement(['💬', '❓', '🎯', '🏫', '👨‍⚕️']),
         ];
     }
 }

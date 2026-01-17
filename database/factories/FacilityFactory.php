@@ -23,6 +23,7 @@ class FacilityFactory extends Factory
         return [
             'user_id' => User::factory(),
             'name' => $this->faker->company,
+            'type' => $this->faker->randomElement(['szkola', 'przedszkole', 'osrodek_terapeutyczny', 'poradnia', 'fundacja', 'stowarzyszenie', 'inne']),
             'description' => $this->faker->text,
             'address' => $this->faker->address,
             'city' => $this->faker->city,
