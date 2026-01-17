@@ -51,10 +51,8 @@ Route::middleware('auth')->group(function () {
         ->middleware('throttle:6,1')
         ->name('verification.send');
 
-    // Note: password.confirm is handled by Laravel Fortify
-    // Route::get('confirm-password') is registered by Fortify
-    Route::post('confirm-password', [ConfirmablePasswordController::class, 'store'])
-        ->name('password.confirm.store');
+    // Note: password confirmation (GET & POST confirm-password) is fully handled by Laravel Fortify
+    // No need to register these routes here
 
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
