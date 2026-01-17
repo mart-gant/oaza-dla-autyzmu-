@@ -2,7 +2,7 @@
 FROM php:8.3-apache
 
 # CACHE BUSTER - Force new build with intl extension
-ENV BUILD_DATE=2026-01-17-13:45
+ENV BUILD_DATE=2026-01-17-14:00
 RUN echo "Fresh build with intl at $BUILD_DATE"
 
 # Install system dependencies and Node.js 20.x
@@ -21,9 +21,12 @@ RUN apt-get update && apt-get install -y \
     && apt-get install -y nodejs \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions (configure intl first)
+# Install PHP extensions (install intl separately with configure)
+RUN docker-php-ext-install pdo_pgsql pdo_mysql mbstring exif pcntl bcmath gd zip
+
+# Install intl separately with proper configuration
 RUN docker-php-ext-configure intl && \
-    docker-php-ext-install pdo_pgsql pdo_mysql mbstring exif pcntl bcmath gd zip intl
+    docker-php-ext-install intl
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
