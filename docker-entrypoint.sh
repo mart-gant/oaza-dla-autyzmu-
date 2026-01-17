@@ -35,7 +35,8 @@ if [ ! -L public/storage ]; then
 fi
 
 echo "==> Laravel setup complete!"
-echo "==> Starting PHP server on 0.0.0.0:\${PORT:-10000}..."
+echo "==> Starting PHP server on 0.0.0.0:${PORT:-10000}..."
 
-# Execute the main container command
-exec "$@"
+# Start PHP built-in server
+exec php -S "0.0.0.0:${PORT:-10000}" -t public
+
