@@ -15,9 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
         // Trust proxies (required for Render.com and reverse proxies)
         $middleware->trustProxies(at: '*');
         
-        // Globalne middleware bezpieczeństwa
-        $middleware->append(\App\Http\Middleware\SecurityHeaders::class);
-        $middleware->append(\App\Http\Middleware\ForceHttps::class);
+        // Globalne middleware bezpieczeństwa (disabled for debugging)
+        // $middleware->append(\App\Http\Middleware\SecurityHeaders::class);
+        // $middleware->append(\App\Http\Middleware\ForceHttps::class);
         
         // Rate limiting dla API
         $middleware->throttleApi();
