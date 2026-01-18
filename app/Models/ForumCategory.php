@@ -21,7 +21,7 @@ class ForumCategory extends Model
      */
     public function topics()
     {
-        return $this->hasMany(ForumTopic::class);
+        return $this->hasMany(ForumTopic::class, 'forum_category_id');
     }
     
     /**
