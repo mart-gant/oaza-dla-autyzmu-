@@ -169,7 +169,7 @@
         <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
             <div class="text-center animate-fade-in">
                 <div class="inline-block mb-8 px-8 py-4 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full shadow-md border border-blue-200/50">
-                    <p class="text-blue-800 font-bold text-lg">✨ Dołącz do ponad {{ \App\Models\User::count() }} członków społeczności</p>
+                    <p class="text-blue-800 font-bold text-lg">✨ Dołącz do społeczności</p>
                 </div>
                 <h2 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 mb-8 leading-tight">
                     Witaj w <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-[length:200%] animate-gradient">Oazie dla Autyzmu</span>
