@@ -92,10 +92,30 @@ class ArticleSeeder extends Seeder
             Article::create($articleData);
         }
 
-        // Dodaj kilka artykułów generowanych przez factory
-        Article::factory(10)->create([
-            'user_id' => $users->random()->id,
-            'category_id' => ArticleCategory::inRandomOrder()->first()->id,
-        ]);
+        // Dodaj kilka artykułów generowanych bezpośrednio (bez factory w production)
+        $generatedTitles = [
+            'Wsparcie psychologiczne dla rodziców dzieci z autyzmem',
+            'Jak przygotować dziecko z autyzmem do przedszkola',
+            'Diety i suplementy w autyzmie - co mówi nauka',
+            'Terapia zajęciowa - jak wygląda w praktyce',
+            'Autyzm u dziewczynek - jak rozpoznać',
+            'Przejście do szkoły - praktyczne wskazówki',
+            'Terapia zwierzętami w autyzmie',
+            'Jak budować rutynę dnia dla dziecka z autyzmem',
+            'Stymulacja rozwoju mowy u dzieci z autyzmem',
+            'Wsparcie w procesie diagnostycznym',
+        ];
+        
+        foreach ($generatedTitles as $index => $title) {
+            Article::create([
+                'title' => $title,
+                'content' => "To jest przykładowa treść artykułu o temacie: {$title}.\n\nArtykuł zawiera praktyczne informacje i wskazówki dla rodziców oraz opiekunów dzieci ze spektrum autyzmu. Każde dziecko jest wyjątkowe i wymaga indywidualnego podejścia.\n\nWięcej szczegółowych informacji znajdziesz po konsultacji ze specjalistami.",
+                'user_id' => $users->random()->id,
+                'category_id' => ArticleCategory::inRandomOrder()->first()->id,
+                'slug' => Str::slug($title) . '-' . (count($articles) + $index + 1),
+                'is_published' => rand(0, 100) < 80,
+                'published_at' => rand(0, 100) < 80 ? now()->subDays(rand(1, 30)) : null,
+            ]);
+        }
     }
 }
