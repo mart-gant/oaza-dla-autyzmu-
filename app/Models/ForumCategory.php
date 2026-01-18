@@ -14,7 +14,7 @@ class ForumCategory extends Model
 {
     use HasFactory, SoftDeletes;
     
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'description'];
     
     /**
      * Relacja: kategoria może mieć wiele tematów
