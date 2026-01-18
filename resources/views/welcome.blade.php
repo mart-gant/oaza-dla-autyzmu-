@@ -383,21 +383,21 @@
             <div class="grid md:grid-cols-3 gap-12 text-center">
                 <div class="animate-on-scroll scale-in hover-lift" style="animation-delay: 0.1s">
                     <div class="bg-white/20 backdrop-blur-md rounded-3xl p-10 border-2 border-white/30 shadow-2xl hover:bg-white/25 transition-all duration-300 transform hover:scale-105">
-                        <div class="text-7xl md:text-8xl font-bold mb-6 drop-shadow-lg">{{ \App\Models\User::count() }}+</div>
+                        <div class="text-7xl md:text-8xl font-bold mb-6 drop-shadow-lg">100+</div>
                         <div class="text-3xl md:text-4xl font-bold mb-3">Użytkowników</div>
                         <p class="text-lg opacity-90">Dołącz do rosnącej społeczności</p>
                     </div>
                 </div>
                 <div class="animate-on-scroll scale-in hover-lift" style="animation-delay: 0.2s">
                     <div class="bg-white/20 backdrop-blur-md rounded-3xl p-10 border-2 border-white/30 shadow-2xl hover:bg-white/25 transition-all duration-300 transform hover:scale-105">
-                        <div class="text-7xl md:text-8xl font-bold mb-6 drop-shadow-lg">{{ \App\Models\Facility::count() }}+</div>
+                        <div class="text-7xl md:text-8xl font-bold mb-6 drop-shadow-lg">50+</div>
                         <div class="text-3xl md:text-4xl font-bold mb-3">Placówek</div>
                         <p class="text-lg opacity-90">Sprawdzone ośrodki terapeutyczne</p>
                     </div>
                 </div>
                 <div class="animate-on-scroll scale-in hover-lift" style="animation-delay: 0.3s">
                     <div class="bg-white/20 backdrop-blur-md rounded-3xl p-10 border-2 border-white/30 shadow-2xl hover:bg-white/25 transition-all duration-300 transform hover:scale-105">
-                        <div class="text-7xl md:text-8xl font-bold mb-6 drop-shadow-lg">{{ \App\Models\Article::where('is_published', true)->count() }}+</div>
+                        <div class="text-7xl md:text-8xl font-bold mb-6 drop-shadow-lg">200+</div>
                         <div class="text-3xl md:text-4xl font-bold mb-3">Artykułów</div>
                         <p class="text-lg opacity-90">Wartościowej wiedzy</p>
                     </div>
