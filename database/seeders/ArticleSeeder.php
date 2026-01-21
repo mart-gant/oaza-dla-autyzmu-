@@ -40,7 +40,10 @@ class ArticleSeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            ArticleCategory::create($category);
+            ArticleCategory::firstOrCreate(
+                ['slug' => $category['slug']], // Szukaj po slug
+                $category // Jeśli nie istnieje, utwórz z tymi danymi
+            );
         }
 
         // Pobierz użytkowników
