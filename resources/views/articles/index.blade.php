@@ -1,21 +1,31 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Poradnik wiedzy') }}
+            </h2>
+            @auth
+                <a href="{{ route('articles.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150">
+                    {{ __('Dodaj artykuł') }}
+                </a>
+            @endauth
+        </div>
+    </x-slot>
 
-@section('content')
-<div class="container mx-auto px-4 py-8">
-    <div class="flex justify-between items-center mb-8">
-        <h1 class="text-3xl font-bold">Poradnik wiedzy</h1>
-        @auth
-            <a href="{{ route('articles.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-200">
-                + Dodaj artykuł
-            </a>
-        @endauth
-    </div>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
     @if(session('success'))
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+        <div class="mb-6 bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-lg">
             {{ session('success') }}
         </div>
     @endif
+
+    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900 dark:text-gray-100">
+
+    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900 dark:text-gray-100">
 
     <div class="mb-6">
         <form action="{{ route('articles.index') }}" method="GET" class="flex gap-2">
@@ -24,7 +34,7 @@
                 name="search" 
                 value="{{ $search ?? '' }}" 
                 placeholder="Szukaj artykułów..."
-                class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
             <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-200">
                 Szukaj
@@ -39,16 +49,16 @@
 
     <div class="space-y-4">
         @forelse ($articles as $article)
-            <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition duration-200">
+            <div class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6 hover:shadow-lg transition duration-200">
                 <div class="flex justify-between items-start">
                     <div class="flex-1">
                         <h2 class="text-xl font-semibold mb-2">
-                            <a href="{{ route('articles.show', $article->id) }}" class="text-blue-600 hover:text-blue-800">
+                            <a href="{{ route('articles.show', $article->id) }}" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
                                 {{ $article->title }}
                             </a>
                         </h2>
-                        <p class="text-gray-600 mb-2">{{ Str::limit(strip_tags($article->content), 200) }}</p>
-                        <div class="text-sm text-gray-500">
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">{{ Str::limit(strip_tags($article->content), 200) }}</p>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
                             <span>Autor: {{ $article->user->name }}</span>
                             <span class="mx-2">•</span>
                             <span>{{ $article->published_at ? $article->published_at->format('d.m.Y') : 'Nieopublikowany' }}</span>
@@ -75,8 +85,8 @@
                 </div>
             </div>
         @empty
-            <div class="bg-gray-100 border border-gray-200 rounded-lg p-8 text-center">
-                <p class="text-gray-600">{{ $search ? 'Nie znaleziono artykułów.' : 'Brak artykułów. Bądź pierwszym, który doda artykuł!' }}</p>
+            <div class="bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-8 text-center">
+                <p class="text-gray-600 dark:text-gray-300">{{ $search ? 'Nie znaleziono artykułów.' : 'Brak artykułów. Bądź pierwszym, który doda artykuł!' }}</p>
             </div>
         @endforelse
     </div>
@@ -84,5 +94,6 @@
     <div class="mt-6">
         {{ $articles->links() }}
     </div>
-</div>
-@endsection
+        </div>
+    </div>
+</x-app-layout>
