@@ -131,7 +131,7 @@
                         Jak mogę zgłosić problem lub otrzymać pomoc?
                     </h3>
                     <p class="text-gray-700 leading-relaxed">
-                        Masz kilka opcji: możesz skorzystać z formularza kontaktowego na stronie <a href="/contact" class="text-blue-600 hover:underline">Kontakt</a>, napisać do nas e-mail lub zgłosić problem bezpośrednio przez platformę. Nasz zespół odpowie tak szybko, jak to możliwe.
+                        Masz kilka opcji: możesz skorzystać z formularza kontaktowego na stronie <a href="/contact" class="text-blue-600 hover:underline">Kontakt</a>, napisać e-mail lub zgłosić problem bezpośrednio przez platformę. Odpowiem tak szybko, jak to możliwe.
                     </p>
                 </div>
             </div>
@@ -140,7 +140,7 @@
             <div class="mt-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-8 text-center text-white">
                 <h2 class="text-2xl font-bold mb-3">Nie znalazłeś odpowiedzi?</h2>
                 <p class="text-lg mb-6 text-blue-50">
-                    Skontaktuj się z nami - chętnie pomożemy!
+                    Skontaktuj się ze mną - chętnie pomogę!
                 </p>
                 <a href="/contact" class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
                     Skontaktuj się

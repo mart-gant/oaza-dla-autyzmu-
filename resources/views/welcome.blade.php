@@ -645,6 +645,7 @@
                         Pomoc
                     </h5>
                     <ul class="space-y-4 text-base">
+                        <li><a href="{{ route('about') }}" class="hover:text-white transition-all hover:translate-x-2 inline-block hover:text-purple-400">O projekcie</a></li>
                         <li><a href="{{ route('contact') }}" class="hover:text-white transition-all hover:translate-x-2 inline-block hover:text-purple-400">Kontakt</a></li>
                         <li><a href="/faq" class="hover:text-white transition-all hover:translate-x-2 inline-block hover:text-purple-400">FAQ</a></li>
                         <li><a href="/privacy" class="hover:text-white transition-all hover:translate-x-2 inline-block hover:text-purple-400">Polityka prywatności</a></li>

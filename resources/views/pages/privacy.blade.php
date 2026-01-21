@@ -68,7 +68,7 @@
                 <section class="mb-8">
                     <h2 class="text-2xl font-bold text-gray-900 mb-4">2. Administrator danych</h2>
                     <p class="text-gray-700 leading-relaxed">
-                        Administratorem Twoich danych osobowych jest Oaza dla Autyzmu. W sprawach związanych z ochroną danych możesz skontaktować się z nami poprzez formularz kontaktowy dostępny na stronie.
+                        Administratorem Twoich danych osobowych jest Oaza dla Autyzmu. W sprawach związanych z ochroną danych możesz skontaktować się ze mną poprzez formularz kontaktowy dostępny na stronie.
                     </p>
                 </section>
 
@@ -158,7 +158,7 @@
                         <li><strong>Prawo do wniesienia skargi</strong> do organu nadzorczego (UODO)</li>
                     </ul>
                     <p class="text-gray-700 leading-relaxed mt-3">
-                        Aby skorzystać z tych praw, skontaktuj się z nami poprzez formularz kontaktowy.
+                        Aby skorzystać z tych praw, skontaktuj się ze mną poprzez formularz kontaktowy.
                     </p>
                 </section>
 
@@ -186,7 +186,7 @@
                 <section class="mb-8">
                     <h2 class="text-2xl font-bold text-gray-900 mb-4">12. Kontakt</h2>
                     <p class="text-gray-700 leading-relaxed">
-                        W razie pytań dotyczących niniejszej polityki prywatności lub przetwarzania Twoich danych osobowych, skontaktuj się z nami poprzez <a href="/contact" class="text-blue-600 hover:underline">formularz kontaktowy</a>.
+                        W razie pytań dotyczących niniejszej polityki prywatności lub przetwarzania Twoich danych osobowych, skontaktuj się ze mną poprzez <a href="/contact" class="text-blue-600 hover:underline">formularz kontaktowy</a>.
                     </p>
                 </section>
             </div>

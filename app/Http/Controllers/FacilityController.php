@@ -116,11 +116,21 @@ class FacilityController extends Controller
             'website' => 'nullable|url|max:255',
             'latitude' => 'nullable|numeric|between:-90,90',
             'longitude' => 'nullable|numeric|between:-180,180',
-            'latitude' => 'nullable|numeric|between:-90,90',
-            'longitude' => 'nullable|numeric|between:-180,180',
+            // Pola weryfikacji - tylko dla adminów
+            'source' => 'nullable|string|max:255',
+            'verification_status' => 'nullable|in:unverified,verified,certified,flagged',
+            'verification_notes' => 'nullable|string|max:1000',
         ]);
 
-        $facility->update($request->all());
+        $data = $request->all();
+
+        // Jeśli admin zmienia status weryfikacji, zapisz kto i kiedy
+        if (auth()->user()->isAdmin() && $request->filled('verification_status') && $request->verification_status !== $facility->verification_status) {
+            $data['verified_by'] = auth()->id();
+            $data['verified_at'] = now();
+        }
+
+        $facility->update($data);
 
         return redirect()->route('facilities.show', $facility)
             ->with('success', 'Dane placówki zostały pomyślnie zaktualizowane.');

@@ -17,6 +17,7 @@ use App\Http\Controllers\SpecialistController;
 use App\Http\Controllers\VisitController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\DB;
 
 // Debug endpoint
@@ -248,3 +249,6 @@ Route::middleware(['auth', 'verified'])->prefix('messages')->name('messages.')->
 // Kontakt
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact');
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+
+// O projekcie
+Route::get('/about', [AboutController::class, 'index'])->name('about');

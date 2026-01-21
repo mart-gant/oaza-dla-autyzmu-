@@ -198,7 +198,7 @@
                 <section class="mb-8">
                     <h2 class="text-2xl font-bold text-gray-900 mb-4">9. Kontakt</h2>
                     <p class="text-gray-700 leading-relaxed">
-                        W razie pytań dotyczących niniejszej polityki cookies lub sposobu wykorzystania plików cookie na naszej stronie, skontaktuj się z nami poprzez <a href="/contact" class="text-blue-600 hover:underline">formularz kontaktowy</a>.
+                        W razie pytań dotyczących niniejszej polityki cookies lub sposobu wykorzystania plików cookie na naszej stronie, skontaktuj się ze mną poprzez <a href="/contact" class="text-blue-600 hover:underline">formularz kontaktowy</a>.
                     </p>
                 </section>
 

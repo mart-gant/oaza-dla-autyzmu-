@@ -97,6 +97,40 @@
                             </div>
                         </div>
 
+                        @if(auth()->user() && auth()->user()->isAdmin())
+                        {{-- Sekcja weryfikacji - tylko dla adminów --}}
+                        <div class="border-t border-gray-200 dark:border-gray-700 pt-6 mt-6">
+                            <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">Weryfikacja placówki (tylko admin)</h3>
+                            
+                            {{-- Źródło danych --}}
+                            <div class="mb-4">
+                                <x-input-label for="source" :value="__('Źródło danych')" />
+                                <x-text-input id="source" class="block mt-1 w-full" type="text" name="source" :value="old('source', $facility->source)" placeholder="np. Lista Idy Tyminy, Certyfikat DwS" />
+                                <x-input-error :messages="$errors->get('source')" class="mt-2" />
+                                <p class="mt-1 text-xs text-gray-500">Podaj źródło, z którego pochodzi informacja o placówce</p>
+                            </div>
+
+                            {{-- Status weryfikacji --}}
+                            <div class="mb-4">
+                                <x-input-label for="verification_status" :value="__('Status weryfikacji')" />
+                                <select id="verification_status" name="verification_status" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                                    <option value="unverified" {{ old('verification_status', $facility->verification_status ?? 'unverified') === 'unverified' ? 'selected' : '' }}>Niezweryfikowana</option>
+                                    <option value="verified" {{ old('verification_status', $facility->verification_status) === 'verified' ? 'selected' : '' }}>Zweryfikowana</option>
+                                    <option value="certified" {{ old('verification_status', $facility->verification_status) === 'certified' ? 'selected' : '' }}>Certyfikowana</option>
+                                    <option value="flagged" {{ old('verification_status', $facility->verification_status) === 'flagged' ? 'selected' : '' }}>Zgłoszono problem</option>
+                                </select>
+                                <x-input-error :messages="$errors->get('verification_status')" class="mt-2" />
+                            </div>
+
+                            {{-- Notatki weryfikacji --}}
+                            <div>
+                                <x-input-label for="verification_notes" :value="__('Notatki weryfikacji')" />
+                                <textarea id="verification_notes" name="verification_notes" rows="3" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" placeholder="Dodatkowe informacje o weryfikacji, zgłoszonych problemach itp.">{{ old('verification_notes', $facility->verification_notes) }}</textarea>
+                                <x-input-error :messages="$errors->get('verification_notes')" class="mt-2" />
+                            </div>
+                        </div>
+                        @endif
+
                         {{-- Przyciski akcji --}}
                         <div class="mt-6 flex items-center justify-end gap-x-4">
                             <a href="{{ route('facilities.show', $facility) }}" class="inline-flex items-center px-4 py-2 bg-gray-200 dark:bg-gray-600 border border-transparent rounded-md font-semibold text-xs text-gray-800 dark:text-gray-200 uppercase tracking-widest hover:bg-gray-300 dark:hover:bg-gray-500 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">

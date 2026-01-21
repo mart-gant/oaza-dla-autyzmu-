@@ -30,6 +30,9 @@
                         {{ __('Admin') }}
                     </x-nav-link>
                     @endif
+                    <x-nav-link :href="route('about')" :active="request()->routeIs('about')" class="text-white hover:text-gray-200">
+                        {{ __('O projekcie') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')" class="text-white hover:text-gray-200">
                         {{ __('Kontakt') }}
                     </x-nav-link>

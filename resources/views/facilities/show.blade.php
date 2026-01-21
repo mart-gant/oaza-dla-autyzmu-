@@ -21,7 +21,17 @@
                     
                     {{-- Nazwa placówki i przyciski akcji --}}
                     <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ $facility->name }}</h3>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ $facility->name }}</h3>
+                            <div class="mt-2 flex items-center gap-3">
+                                {!! $facility->getVerificationBadge() !!}
+                                @if($facility->source)
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                                        📋 {{ $facility->source }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         
                         @auth
                         <div class="flex items-center gap-x-4">
